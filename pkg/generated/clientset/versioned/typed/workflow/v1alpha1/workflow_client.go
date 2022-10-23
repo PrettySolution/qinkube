@@ -21,9 +21,9 @@ package v1alpha1
 import (
 	"net/http"
 
+	v1alpha1 "github.com/prettysolution/vfs-workflows/pkg/apis/workflow/v1alpha1"
+	"github.com/prettysolution/vfs-workflows/pkg/generated/clientset/versioned/scheme"
 	rest "k8s.io/client-go/rest"
-	v1alpha1 "k8s.io/vfs-workflows/pkg/apis/workflow/v1alpha1"
-	"k8s.io/vfs-workflows/pkg/generated/clientset/versioned/scheme"
 )
 
 type WorkflowV1alpha1Interface interface {
@@ -31,7 +31,7 @@ type WorkflowV1alpha1Interface interface {
 	KlustersGetter
 }
 
-// WorkflowV1alpha1Client is used to interact with features provided by the workflow.k8s.io group.
+// WorkflowV1alpha1Client is used to interact with features provided by the workflow.prettysoluton.github.com group.
 type WorkflowV1alpha1Client struct {
 	restClient rest.Interface
 }

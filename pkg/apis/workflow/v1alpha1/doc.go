@@ -1,4 +1,4 @@
 // +k8s:deepcopy-gen=package
-// +groupName=workflow.k8s.io
+// +groupName=workflow.prettysoluton.github.com
 
 package v1alpha1

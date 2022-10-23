@@ -22,14 +22,14 @@ import (
 	"context"
 	time "time"
 
+	workflowv1alpha1 "github.com/prettysolution/vfs-workflows/pkg/apis/workflow/v1alpha1"
+	versioned "github.com/prettysolution/vfs-workflows/pkg/generated/clientset/versioned"
+	internalinterfaces "github.com/prettysolution/vfs-workflows/pkg/generated/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/prettysolution/vfs-workflows/pkg/generated/listers/workflow/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"
 	cache "k8s.io/client-go/tools/cache"
-	workflowv1alpha1 "k8s.io/vfs-workflows/pkg/apis/workflow/v1alpha1"
-	versioned "k8s.io/vfs-workflows/pkg/generated/clientset/versioned"
-	internalinterfaces "k8s.io/vfs-workflows/pkg/generated/informers/externalversions/internalinterfaces"
-	v1alpha1 "k8s.io/vfs-workflows/pkg/generated/listers/workflow/v1alpha1"
 )
 
 // KlusterInformer provides access to a shared informer and lister for

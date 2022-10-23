@@ -19,9 +19,9 @@ limitations under the License.
 package fake
 
 import (
+	v1alpha1 "github.com/prettysolution/vfs-workflows/pkg/generated/clientset/versioned/typed/workflow/v1alpha1"
 	rest "k8s.io/client-go/rest"
 	testing "k8s.io/client-go/testing"
-	v1alpha1 "k8s.io/vfs-workflows/pkg/generated/clientset/versioned/typed/workflow/v1alpha1"
 )
 
 type FakeWorkflowV1alpha1 struct {

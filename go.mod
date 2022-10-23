@@ -1,4 +1,4 @@
-module k8s.io/vfs-workflows
+module github.com/prettysolution/vfs-workflows
 
 go 1.19
 

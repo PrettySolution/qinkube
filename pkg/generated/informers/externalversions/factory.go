@@ -23,13 +23,13 @@ import (
 	sync "sync"
 	time "time"
 
+	versioned "github.com/prettysolution/vfs-workflows/pkg/generated/clientset/versioned"
+	internalinterfaces "github.com/prettysolution/vfs-workflows/pkg/generated/informers/externalversions/internalinterfaces"
+	workflow "github.com/prettysolution/vfs-workflows/pkg/generated/informers/externalversions/workflow"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
-	versioned "k8s.io/vfs-workflows/pkg/generated/clientset/versioned"
-	internalinterfaces "k8s.io/vfs-workflows/pkg/generated/informers/externalversions/internalinterfaces"
-	workflow "k8s.io/vfs-workflows/pkg/generated/informers/externalversions/workflow"
 )
 
 // SharedInformerOption defines the functional option type for SharedInformerFactory.

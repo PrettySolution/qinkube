@@ -21,9 +21,9 @@ package externalversions
 import (
 	"fmt"
 
+	v1alpha1 "github.com/prettysolution/vfs-workflows/pkg/apis/workflow/v1alpha1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
-	v1alpha1 "k8s.io/vfs-workflows/pkg/apis/workflow/v1alpha1"
 )
 
 // GenericInformer is type of SharedIndexInformer which will locate and delegate to other
@@ -52,7 +52,7 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=workflow.k8s.io, Version=v1alpha1
+	// Group=workflow.prettysoluton.github.com, Version=v1alpha1
 	case v1alpha1.SchemeGroupVersion.WithResource("klusters"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Workflow().V1alpha1().Klusters().Informer()}, nil
 

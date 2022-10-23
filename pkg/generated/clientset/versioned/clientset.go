@@ -22,10 +22,10 @@ import (
 	"fmt"
 	"net/http"
 
+	workflowv1alpha1 "github.com/prettysolution/vfs-workflows/pkg/generated/clientset/versioned/typed/workflow/v1alpha1"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
-	workflowv1alpha1 "k8s.io/vfs-workflows/pkg/generated/clientset/versioned/typed/workflow/v1alpha1"
 )
 
 type Interface interface {

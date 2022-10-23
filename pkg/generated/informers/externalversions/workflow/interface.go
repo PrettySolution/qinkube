@@ -19,8 +19,8 @@ limitations under the License.
 package workflow
 
 import (
-	internalinterfaces "k8s.io/vfs-workflows/pkg/generated/informers/externalversions/internalinterfaces"
-	v1alpha1 "k8s.io/vfs-workflows/pkg/generated/informers/externalversions/workflow/v1alpha1"
+	internalinterfaces "github.com/prettysolution/vfs-workflows/pkg/generated/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/prettysolution/vfs-workflows/pkg/generated/informers/externalversions/workflow/v1alpha1"
 )
 
 // Interface provides access to each of this group's versions.
