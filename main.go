@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/prettysolution/vfs-workflows/pkg/apis/workflow/v1alpha1"
+	"github.com/prettysolution/vflow/pkg/apis/vflow/v1alpha1"
 )
 
 func main() {
