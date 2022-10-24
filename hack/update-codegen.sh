@@ -1,24 +1,37 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 
 set -o errexit
 set -o nounset
 set -o pipefail
 
-SCRIPT_ROOT=$(dirname "${BASH_SOURCE[0]}")/..
-CODEGEN_PKG=${CODEGEN_PKG:-$(cd "${SCRIPT_ROOT}"; ls -d -1 ./vendor/k8s.io/code-generator 2>/dev/null || echo ../code-generator)}
-echo $SCRIPT_ROOT
-echo $CODEGEN_PKG
+source $(dirname $0)/library.sh
+header "running codegen"
 
-# generate the code with:
-# --output-base    because this script should also be able to run inside the vendor dir of
-#                  k8s.io/kubernetes. The output-base is needed for the generators to output into the vendor dir
-#                  instead of the $GOPATH directly. For normal projects this can be dropped.
-bash "${CODEGEN_PKG}"/generate-groups.sh "deepcopy,client,informer,lister" \
-  github.com/prettysolution/vfs-workflows/pkg/generated github.com/prettysolution/vfs-workflows/pkg/apis \
-  workflow:v1alpha1 \
-  --output-base "$(dirname "${BASH_SOURCE[0]}")/../../../.." \
-  --go-header-file "${SCRIPT_ROOT}"/hack/boilerplate.go.txt
+ensure_vendor
+make_fake_paths
 
-# To use your own boilerplate text append:
-#   --go-header-file "${SCRIPT_ROOT}"/hack/custom-boilerplate.go.txt
+export GOPATH="${FAKE_GOPATH}"
+export GO111MODULE="off"
+
+cd "${FAKE_REPOPATH}"
+
+echo $GOPATH
+echo $FAKE_REPOPATH
+
+CODEGEN_PKG=${CODEGEN_PKG:-$(cd "${FAKE_REPOPATH}"; ls -d -1 ./vendor/k8s.io/code-generator 2>/dev/null || echo ../code-generator)}
+
+subheader "running codegen"
+bash -x ${CODEGEN_PKG}/generate-groups.sh "deepcopy" \
+  github.com/prettysolution/vfs-workflows/pkg/client github.com/prettysolution/vfs-workflows/pkg/apis \
+  "workflow:v1alpha1" \
+  --go-header-file hack/boilerplate.go.txt
+
+bash -x ${CODEGEN_PKG}/generate-groups.sh "client,informer,lister" \
+  github.com/prettysolution/vfs-workflows/pkg/client github.com/prettysolution/vfs-workflows/pkg/apis \
+  "workflow:v1alpha1" \
+  --plural-exceptions="Vertex:Vertices" \
+  --go-header-file hack/boilerplate.go.txt
+
+# gofmt the tree
+subheader "running gofmt"
+find . -name "*.go" -type f -print0 | xargs -0 gofmt -s -w
