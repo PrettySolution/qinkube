@@ -29,10 +29,6 @@ var (
 	AddToScheme = SchemeBuilder.AddToScheme
 )
 
-func init() {
-	SchemeBuilder.Register(addKnownTypes)
-}
-
 func addKnownTypes(scheme *runtime.Scheme) error {
 	scheme.AddKnownTypes(SchemeGroupVersion,
 		&Kluster{},
