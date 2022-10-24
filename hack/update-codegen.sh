@@ -22,13 +22,13 @@ CODEGEN_PKG=${CODEGEN_PKG:-$(cd "${FAKE_REPOPATH}"; ls -d -1 ./vendor/k8s.io/cod
 
 subheader "running codegen"
 bash -x ${CODEGEN_PKG}/generate-groups.sh "deepcopy" \
-  github.com/prettysolution/vfs-workflows/pkg/client github.com/prettysolution/vfs-workflows/pkg/apis \
-  "workflow:v1alpha1" \
+  github.com/prettysolution/vflow/pkg/client github.com/prettysolution/vflow/pkg/apis \
+  "vflow:v1alpha1" \
   --go-header-file hack/boilerplate.go.txt
 
 bash -x ${CODEGEN_PKG}/generate-groups.sh "client,informer,lister" \
-  github.com/prettysolution/vfs-workflows/pkg/client github.com/prettysolution/vfs-workflows/pkg/apis \
-  "workflow:v1alpha1" \
+  github.com/prettysolution/vflow/pkg/client github.com/prettysolution/vflow/pkg/apis \
+  "vflow:v1alpha1" \
   --plural-exceptions="Vertex:Vertices" \
   --go-header-file hack/boilerplate.go.txt
 

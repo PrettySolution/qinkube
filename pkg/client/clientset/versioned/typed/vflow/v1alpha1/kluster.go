@@ -22,8 +22,8 @@ import (
 	"context"
 	"time"
 
-	v1alpha1 "github.com/prettysolution/vfs-workflows/pkg/apis/workflow/v1alpha1"
-	scheme "github.com/prettysolution/vfs-workflows/pkg/client/clientset/versioned/scheme"
+	v1alpha1 "github.com/prettysolution/vflow/pkg/apis/vflow/v1alpha1"
+	scheme "github.com/prettysolution/vflow/pkg/client/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -56,7 +56,7 @@ type klusters struct {
 }
 
 // newKlusters returns a Klusters
-func newKlusters(c *WorkflowV1alpha1Client, namespace string) *klusters {
+func newKlusters(c *VflowV1alpha1Client, namespace string) *klusters {
 	return &klusters{
 		client: c.RESTClient(),
 		ns:     namespace,

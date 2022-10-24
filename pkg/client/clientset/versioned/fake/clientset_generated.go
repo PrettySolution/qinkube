@@ -19,9 +19,9 @@ limitations under the License.
 package fake
 
 import (
-	clientset "github.com/prettysolution/vfs-workflows/pkg/client/clientset/versioned"
-	workflowv1alpha1 "github.com/prettysolution/vfs-workflows/pkg/client/clientset/versioned/typed/workflow/v1alpha1"
-	fakeworkflowv1alpha1 "github.com/prettysolution/vfs-workflows/pkg/client/clientset/versioned/typed/workflow/v1alpha1/fake"
+	clientset "github.com/prettysolution/vflow/pkg/client/clientset/versioned"
+	vflowv1alpha1 "github.com/prettysolution/vflow/pkg/client/clientset/versioned/typed/vflow/v1alpha1"
+	fakevflowv1alpha1 "github.com/prettysolution/vflow/pkg/client/clientset/versioned/typed/vflow/v1alpha1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
@@ -79,7 +79,7 @@ var (
 	_ testing.FakeClient  = &Clientset{}
 )
 
-// WorkflowV1alpha1 retrieves the WorkflowV1alpha1Client
-func (c *Clientset) WorkflowV1alpha1() workflowv1alpha1.WorkflowV1alpha1Interface {
-	return &fakeworkflowv1alpha1.FakeWorkflowV1alpha1{Fake: &c.Fake}
+// VflowV1alpha1 retrieves the VflowV1alpha1Client
+func (c *Clientset) VflowV1alpha1() vflowv1alpha1.VflowV1alpha1Interface {
+	return &fakevflowv1alpha1.FakeVflowV1alpha1{Fake: &c.Fake}
 }

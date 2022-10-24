@@ -1,8 +1,9 @@
-module github.com/prettysolution/vfs-workflows
+module github.com/prettysolution/vflow
 
 go 1.19
 
 require (
+	github.com/prettysolution/vfs-workflows v0.0.0-20221024125340-246451ca6da7
 	k8s.io/apimachinery v0.25.3
 	k8s.io/client-go v0.25.3
 	k8s.io/code-generator v0.25.3

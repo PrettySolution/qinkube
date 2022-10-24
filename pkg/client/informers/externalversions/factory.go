@@ -23,9 +23,9 @@ import (
 	sync "sync"
 	time "time"
 
-	versioned "github.com/prettysolution/vfs-workflows/pkg/client/clientset/versioned"
-	internalinterfaces "github.com/prettysolution/vfs-workflows/pkg/client/informers/externalversions/internalinterfaces"
-	workflow "github.com/prettysolution/vfs-workflows/pkg/client/informers/externalversions/workflow"
+	versioned "github.com/prettysolution/vflow/pkg/client/clientset/versioned"
+	internalinterfaces "github.com/prettysolution/vflow/pkg/client/informers/externalversions/internalinterfaces"
+	vflow "github.com/prettysolution/vflow/pkg/client/informers/externalversions/vflow"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -172,9 +172,9 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
-	Workflow() workflow.Interface
+	Vflow() vflow.Interface
 }
 
-func (f *sharedInformerFactory) Workflow() workflow.Interface {
-	return workflow.New(f, f.namespace, f.tweakListOptions)
+func (f *sharedInformerFactory) Vflow() vflow.Interface {
+	return vflow.New(f, f.namespace, f.tweakListOptions)
 }

@@ -1,14 +1,14 @@
 package v1alpha1
 
 import (
-	"github.com/prettysolution/vfs-workflows/pkg/apis/workflow"
+	"github.com/prettysolution/vflow/pkg/apis/vflow"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 
 var SchemeGroupVersion = schema.GroupVersion{
-	Group:   workflow.GroupName,
+	Group:   vflow.GroupName,
 	Version: "v1alpha1",
 }
 
