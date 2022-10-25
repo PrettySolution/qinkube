@@ -23,9 +23,9 @@ import (
 	sync "sync"
 	time "time"
 
-	versioned "github.com/prettysolution/vflow/pkg/client/clientset/versioned"
-	internalinterfaces "github.com/prettysolution/vflow/pkg/client/informers/externalversions/internalinterfaces"
-	vflow "github.com/prettysolution/vflow/pkg/client/informers/externalversions/vflow"
+	versioned "github.com/prettysolution/qinkube/pkg/client/clientset/versioned"
+	internalinterfaces "github.com/prettysolution/qinkube/pkg/client/informers/externalversions/internalinterfaces"
+	qinkube "github.com/prettysolution/qinkube/pkg/client/informers/externalversions/qinkube"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -172,9 +172,9 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
-	Vflow() vflow.Interface
+	Qinkube() qinkube.Interface
 }
 
-func (f *sharedInformerFactory) Vflow() vflow.Interface {
-	return vflow.New(f, f.namespace, f.tweakListOptions)
+func (f *sharedInformerFactory) Qinkube() qinkube.Interface {
+	return qinkube.New(f, f.namespace, f.tweakListOptions)
 }

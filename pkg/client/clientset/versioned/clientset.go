@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"net/http"
 
-	vflowv1alpha1 "github.com/prettysolution/vflow/pkg/client/clientset/versioned/typed/vflow/v1alpha1"
+	qinkubev1alpha1 "github.com/prettysolution/qinkube/pkg/client/clientset/versioned/typed/qinkube/v1alpha1"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
@@ -30,19 +30,19 @@ import (
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
-	VflowV1alpha1() vflowv1alpha1.VflowV1alpha1Interface
+	QinkubeV1alpha1() qinkubev1alpha1.QinkubeV1alpha1Interface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
 // version included in a Clientset.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	vflowV1alpha1 *vflowv1alpha1.VflowV1alpha1Client
+	qinkubeV1alpha1 *qinkubev1alpha1.QinkubeV1alpha1Client
 }
 
-// VflowV1alpha1 retrieves the VflowV1alpha1Client
-func (c *Clientset) VflowV1alpha1() vflowv1alpha1.VflowV1alpha1Interface {
-	return c.vflowV1alpha1
+// QinkubeV1alpha1 retrieves the QinkubeV1alpha1Client
+func (c *Clientset) QinkubeV1alpha1() qinkubev1alpha1.QinkubeV1alpha1Interface {
+	return c.qinkubeV1alpha1
 }
 
 // Discovery retrieves the DiscoveryClient
@@ -89,7 +89,7 @@ func NewForConfigAndClient(c *rest.Config, httpClient *http.Client) (*Clientset,
 
 	var cs Clientset
 	var err error
-	cs.vflowV1alpha1, err = vflowv1alpha1.NewForConfigAndClient(&configShallowCopy, httpClient)
+	cs.qinkubeV1alpha1, err = qinkubev1alpha1.NewForConfigAndClient(&configShallowCopy, httpClient)
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +114,7 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 // New creates a new Clientset for the given RESTClient.
 func New(c rest.Interface) *Clientset {
 	var cs Clientset
-	cs.vflowV1alpha1 = vflowv1alpha1.New(c)
+	cs.qinkubeV1alpha1 = qinkubev1alpha1.New(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClient(c)
 	return &cs

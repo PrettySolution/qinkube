@@ -1,7 +1,7 @@
 package v1alpha1
 
 import (
-	"github.com/prettysolution/vflow/pkg/apis/vflow"
+	"github.com/prettysolution/qinkube/pkg/apis/qinkube"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -9,7 +9,7 @@ import (
 
 var (
 	// SchemeGroupVersion is group version used to register these objects.
-	SchemeGroupVersion = schema.GroupVersion{Group: vflow.GroupName, Version: "v1alpha1"}
+	SchemeGroupVersion = schema.GroupVersion{Group: qinkube.GroupName, Version: "v1alpha1"}
 
 	// SchemeBuilder initializes a scheme builder
 	SchemeBuilder = runtime.NewSchemeBuilder(addKnownTypes)

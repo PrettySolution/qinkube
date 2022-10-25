@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/prettysolution/vflow/pkg/apis/vflow/v1alpha1"
+	"github.com/prettysolution/qinkube/pkg/apis/qinkube/v1alpha1"
 )
 
 func main() {

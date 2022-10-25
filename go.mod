@@ -1,4 +1,4 @@
-module github.com/prettysolution/vflow
+module github.com/prettysolution/qinkube
 
 go 1.19
 

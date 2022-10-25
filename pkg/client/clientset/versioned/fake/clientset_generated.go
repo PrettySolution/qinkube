@@ -19,9 +19,9 @@ limitations under the License.
 package fake
 
 import (
-	clientset "github.com/prettysolution/vflow/pkg/client/clientset/versioned"
-	vflowv1alpha1 "github.com/prettysolution/vflow/pkg/client/clientset/versioned/typed/vflow/v1alpha1"
-	fakevflowv1alpha1 "github.com/prettysolution/vflow/pkg/client/clientset/versioned/typed/vflow/v1alpha1/fake"
+	clientset "github.com/prettysolution/qinkube/pkg/client/clientset/versioned"
+	qinkubev1alpha1 "github.com/prettysolution/qinkube/pkg/client/clientset/versioned/typed/qinkube/v1alpha1"
+	fakeqinkubev1alpha1 "github.com/prettysolution/qinkube/pkg/client/clientset/versioned/typed/qinkube/v1alpha1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
@@ -79,7 +79,7 @@ var (
 	_ testing.FakeClient  = &Clientset{}
 )
 
-// VflowV1alpha1 retrieves the VflowV1alpha1Client
-func (c *Clientset) VflowV1alpha1() vflowv1alpha1.VflowV1alpha1Interface {
-	return &fakevflowv1alpha1.FakeVflowV1alpha1{Fake: &c.Fake}
+// QinkubeV1alpha1 retrieves the QinkubeV1alpha1Client
+func (c *Clientset) QinkubeV1alpha1() qinkubev1alpha1.QinkubeV1alpha1Interface {
+	return &fakeqinkubev1alpha1.FakeQinkubeV1alpha1{Fake: &c.Fake}
 }

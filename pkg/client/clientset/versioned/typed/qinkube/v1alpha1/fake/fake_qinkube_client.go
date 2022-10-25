@@ -19,22 +19,22 @@ limitations under the License.
 package fake
 
 import (
-	v1alpha1 "github.com/prettysolution/vflow/pkg/client/clientset/versioned/typed/vflow/v1alpha1"
+	v1alpha1 "github.com/prettysolution/qinkube/pkg/client/clientset/versioned/typed/qinkube/v1alpha1"
 	rest "k8s.io/client-go/rest"
 	testing "k8s.io/client-go/testing"
 )
 
-type FakeVflowV1alpha1 struct {
+type FakeQinkubeV1alpha1 struct {
 	*testing.Fake
 }
 
-func (c *FakeVflowV1alpha1) Klusters(namespace string) v1alpha1.KlusterInterface {
+func (c *FakeQinkubeV1alpha1) Klusters(namespace string) v1alpha1.KlusterInterface {
 	return &FakeKlusters{c, namespace}
 }
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
-func (c *FakeVflowV1alpha1) RESTClient() rest.Interface {
+func (c *FakeQinkubeV1alpha1) RESTClient() rest.Interface {
 	var ret *rest.RESTClient
 	return ret
 }

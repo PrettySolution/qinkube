@@ -21,29 +21,29 @@ package v1alpha1
 import (
 	"net/http"
 
-	v1alpha1 "github.com/prettysolution/vflow/pkg/apis/vflow/v1alpha1"
-	"github.com/prettysolution/vflow/pkg/client/clientset/versioned/scheme"
+	v1alpha1 "github.com/prettysolution/qinkube/pkg/apis/qinkube/v1alpha1"
+	"github.com/prettysolution/qinkube/pkg/client/clientset/versioned/scheme"
 	rest "k8s.io/client-go/rest"
 )
 
-type VflowV1alpha1Interface interface {
+type QinkubeV1alpha1Interface interface {
 	RESTClient() rest.Interface
 	KlustersGetter
 }
 
-// VflowV1alpha1Client is used to interact with features provided by the vflow.prettysoluton.github.com group.
-type VflowV1alpha1Client struct {
+// QinkubeV1alpha1Client is used to interact with features provided by the qinkube.prettysoluton.github.com group.
+type QinkubeV1alpha1Client struct {
 	restClient rest.Interface
 }
 
-func (c *VflowV1alpha1Client) Klusters(namespace string) KlusterInterface {
+func (c *QinkubeV1alpha1Client) Klusters(namespace string) KlusterInterface {
 	return newKlusters(c, namespace)
 }
 
-// NewForConfig creates a new VflowV1alpha1Client for the given config.
+// NewForConfig creates a new QinkubeV1alpha1Client for the given config.
 // NewForConfig is equivalent to NewForConfigAndClient(c, httpClient),
 // where httpClient was generated with rest.HTTPClientFor(c).
-func NewForConfig(c *rest.Config) (*VflowV1alpha1Client, error) {
+func NewForConfig(c *rest.Config) (*QinkubeV1alpha1Client, error) {
 	config := *c
 	if err := setConfigDefaults(&config); err != nil {
 		return nil, err
@@ -55,9 +55,9 @@ func NewForConfig(c *rest.Config) (*VflowV1alpha1Client, error) {
 	return NewForConfigAndClient(&config, httpClient)
 }
 
-// NewForConfigAndClient creates a new VflowV1alpha1Client for the given config and http client.
+// NewForConfigAndClient creates a new QinkubeV1alpha1Client for the given config and http client.
 // Note the http client provided takes precedence over the configured transport values.
-func NewForConfigAndClient(c *rest.Config, h *http.Client) (*VflowV1alpha1Client, error) {
+func NewForConfigAndClient(c *rest.Config, h *http.Client) (*QinkubeV1alpha1Client, error) {
 	config := *c
 	if err := setConfigDefaults(&config); err != nil {
 		return nil, err
@@ -66,12 +66,12 @@ func NewForConfigAndClient(c *rest.Config, h *http.Client) (*VflowV1alpha1Client
 	if err != nil {
 		return nil, err
 	}
-	return &VflowV1alpha1Client{client}, nil
+	return &QinkubeV1alpha1Client{client}, nil
 }
 
-// NewForConfigOrDie creates a new VflowV1alpha1Client for the given config and
+// NewForConfigOrDie creates a new QinkubeV1alpha1Client for the given config and
 // panics if there is an error in the config.
-func NewForConfigOrDie(c *rest.Config) *VflowV1alpha1Client {
+func NewForConfigOrDie(c *rest.Config) *QinkubeV1alpha1Client {
 	client, err := NewForConfig(c)
 	if err != nil {
 		panic(err)
@@ -79,9 +79,9 @@ func NewForConfigOrDie(c *rest.Config) *VflowV1alpha1Client {
 	return client
 }
 
-// New creates a new VflowV1alpha1Client for the given RESTClient.
-func New(c rest.Interface) *VflowV1alpha1Client {
-	return &VflowV1alpha1Client{c}
+// New creates a new QinkubeV1alpha1Client for the given RESTClient.
+func New(c rest.Interface) *QinkubeV1alpha1Client {
+	return &QinkubeV1alpha1Client{c}
 }
 
 func setConfigDefaults(config *rest.Config) error {
@@ -99,7 +99,7 @@ func setConfigDefaults(config *rest.Config) error {
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
-func (c *VflowV1alpha1Client) RESTClient() rest.Interface {
+func (c *QinkubeV1alpha1Client) RESTClient() rest.Interface {
 	if c == nil {
 		return nil
 	}

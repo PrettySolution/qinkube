@@ -30,7 +30,7 @@ function warning() {
 function make_fake_paths() {
   FAKE_GOPATH="$(mktemp -d)"
   trap 'rm -rf ${FAKE_GOPATH}' EXIT
-  FAKE_REPOPATH="${FAKE_GOPATH}/src/github.com/prettysolution/vflow"
+  FAKE_REPOPATH="${FAKE_GOPATH}/src/github.com/prettysolution/qinkube"
   mkdir -p "$(dirname "${FAKE_REPOPATH}")" && ln -s "${REPO_ROOT}" "${FAKE_REPOPATH}"
 }
 

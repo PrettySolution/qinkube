@@ -22,10 +22,10 @@ import (
 	"context"
 	time "time"
 
-	vflowv1alpha1 "github.com/prettysolution/vflow/pkg/apis/vflow/v1alpha1"
-	versioned "github.com/prettysolution/vflow/pkg/client/clientset/versioned"
-	internalinterfaces "github.com/prettysolution/vflow/pkg/client/informers/externalversions/internalinterfaces"
-	v1alpha1 "github.com/prettysolution/vflow/pkg/client/listers/vflow/v1alpha1"
+	qinkubev1alpha1 "github.com/prettysolution/qinkube/pkg/apis/qinkube/v1alpha1"
+	versioned "github.com/prettysolution/qinkube/pkg/client/clientset/versioned"
+	internalinterfaces "github.com/prettysolution/qinkube/pkg/client/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/prettysolution/qinkube/pkg/client/listers/qinkube/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -62,16 +62,16 @@ func NewFilteredKlusterInformer(client versioned.Interface, namespace string, re
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.VflowV1alpha1().Klusters(namespace).List(context.TODO(), options)
+				return client.QinkubeV1alpha1().Klusters(namespace).List(context.TODO(), options)
 			},
 			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.VflowV1alpha1().Klusters(namespace).Watch(context.TODO(), options)
+				return client.QinkubeV1alpha1().Klusters(namespace).Watch(context.TODO(), options)
 			},
 		},
-		&vflowv1alpha1.Kluster{},
+		&qinkubev1alpha1.Kluster{},
 		resyncPeriod,
 		indexers,
 	)
@@ -82,7 +82,7 @@ func (f *klusterInformer) defaultInformer(client versioned.Interface, resyncPeri
 }
 
 func (f *klusterInformer) Informer() cache.SharedIndexInformer {
-	return f.factory.InformerFor(&vflowv1alpha1.Kluster{}, f.defaultInformer)
+	return f.factory.InformerFor(&qinkubev1alpha1.Kluster{}, f.defaultInformer)
 }
 
 func (f *klusterInformer) Lister() v1alpha1.KlusterLister {

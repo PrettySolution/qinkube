@@ -21,7 +21,7 @@ package fake
 import (
 	"context"
 
-	v1alpha1 "github.com/prettysolution/vflow/pkg/apis/vflow/v1alpha1"
+	v1alpha1 "github.com/prettysolution/qinkube/pkg/apis/qinkube/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	labels "k8s.io/apimachinery/pkg/labels"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -32,13 +32,13 @@ import (
 
 // FakeKlusters implements KlusterInterface
 type FakeKlusters struct {
-	Fake *FakeVflowV1alpha1
+	Fake *FakeQinkubeV1alpha1
 	ns   string
 }
 
-var klustersResource = schema.GroupVersionResource{Group: "vflow.prettysoluton.github.com", Version: "v1alpha1", Resource: "klusters"}
+var klustersResource = schema.GroupVersionResource{Group: "qinkube.prettysoluton.github.com", Version: "v1alpha1", Resource: "klusters"}
 
-var klustersKind = schema.GroupVersionKind{Group: "vflow.prettysoluton.github.com", Version: "v1alpha1", Kind: "Kluster"}
+var klustersKind = schema.GroupVersionKind{Group: "qinkube.prettysoluton.github.com", Version: "v1alpha1", Kind: "Kluster"}
 
 // Get takes name of the kluster, and returns the corresponding kluster object, and an error if there is any.
 func (c *FakeKlusters) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.Kluster, err error) {
