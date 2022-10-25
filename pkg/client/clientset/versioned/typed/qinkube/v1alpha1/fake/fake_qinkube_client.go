@@ -28,8 +28,8 @@ type FakeQinkubeV1alpha1 struct {
 	*testing.Fake
 }
 
-func (c *FakeQinkubeV1alpha1) Klusters(namespace string) v1alpha1.KlusterInterface {
-	return &FakeKlusters{c, namespace}
+func (c *FakeQinkubeV1alpha1) Queues(namespace string) v1alpha1.QueueInterface {
+	return &FakeQueues{c, namespace}
 }
 
 // RESTClient returns a RESTClient that is used to communicate

@@ -53,8 +53,8 @@ func (f *genericInformer) Lister() cache.GenericLister {
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
 	// Group=qinkube.prettysoluton.github.com, Version=v1alpha1
-	case v1alpha1.SchemeGroupVersion.WithResource("klusters"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Qinkube().V1alpha1().Klusters().Informer()}, nil
+	case v1alpha1.SchemeGroupVersion.WithResource("queues"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Qinkube().V1alpha1().Queues().Informer()}, nil
 
 	}
 

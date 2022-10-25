@@ -7,32 +7,22 @@ import (
 // +genclient
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-type Kluster struct {
+type Queue struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec KlusterSpec `json:"spec"`
+	Spec QueueSpec `json:"spec"`
 }
 
-type KlusterSpec struct {
-	Name    string `json:"name"`
-	Region  string `json:"region"`
-	Version string `json:"version"`
-
-	NodePools []NodePool
-}
-
-type NodePool struct {
-	Size  string `json:"size"`
-	Name  string `json:"mane"`
-	Count int    `json:"count"`
+type QueueSpec struct {
+	Name string `json:"name"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-type KlusterList struct {
+type QueueList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata"`
 
-	Items []Kluster `json:"items"`
+	Items []Queue `json:"items"`
 }

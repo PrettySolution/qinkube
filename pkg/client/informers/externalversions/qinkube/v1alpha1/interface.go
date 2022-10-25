@@ -24,8 +24,8 @@ import (
 
 // Interface provides access to all the informers in this group version.
 type Interface interface {
-	// Klusters returns a KlusterInformer.
-	Klusters() KlusterInformer
+	// Queues returns a QueueInformer.
+	Queues() QueueInformer
 }
 
 type version struct {
@@ -39,7 +39,7 @@ func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakList
 	return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
 }
 
-// Klusters returns a KlusterInformer.
-func (v *version) Klusters() KlusterInformer {
-	return &klusterInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+// Queues returns a QueueInformer.
+func (v *version) Queues() QueueInformer {
+	return &queueInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }

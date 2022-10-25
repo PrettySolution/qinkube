@@ -18,10 +18,10 @@ limitations under the License.
 
 package v1alpha1
 
-// KlusterListerExpansion allows custom methods to be added to
-// KlusterLister.
-type KlusterListerExpansion interface{}
+// QueueListerExpansion allows custom methods to be added to
+// QueueLister.
+type QueueListerExpansion interface{}
 
-// KlusterNamespaceListerExpansion allows custom methods to be added to
-// KlusterNamespaceLister.
-type KlusterNamespaceListerExpansion interface{}
+// QueueNamespaceListerExpansion allows custom methods to be added to
+// QueueNamespaceLister.
+type QueueNamespaceListerExpansion interface{}

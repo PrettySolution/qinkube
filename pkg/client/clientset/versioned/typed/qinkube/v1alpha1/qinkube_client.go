@@ -28,7 +28,7 @@ import (
 
 type QinkubeV1alpha1Interface interface {
 	RESTClient() rest.Interface
-	KlustersGetter
+	QueuesGetter
 }
 
 // QinkubeV1alpha1Client is used to interact with features provided by the qinkube.prettysoluton.github.com group.
@@ -36,8 +36,8 @@ type QinkubeV1alpha1Client struct {
 	restClient rest.Interface
 }
 
-func (c *QinkubeV1alpha1Client) Klusters(namespace string) KlusterInterface {
-	return newKlusters(c, namespace)
+func (c *QinkubeV1alpha1Client) Queues(namespace string) QueueInterface {
+	return newQueues(c, namespace)
 }
 
 // NewForConfig creates a new QinkubeV1alpha1Client for the given config.
