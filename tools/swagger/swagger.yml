@@ -1,0 +1,108 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: mytransport
+spec:
+  serverName: kubernetes           # [1]
+  insecureSkipVerify: true         # [2]
+
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: testroute
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`kubernetes`)
+      kind: Rule
+      services:
+        - kind: Service
+          name: kubernetes
+          port: 443
+          serversTransport: mytransport
+      middlewares:
+        - name: test-header
+    - match: Host(`swagger-ui`)
+      kind: Rule
+      services:
+        - kind: Service
+          name: swagger-ui-service
+          port: 8080
+      middlewares:
+        - name: test-header
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: test-header
+spec:
+  headers:
+    customRequestHeaders:
+      Authorization: "Bearer PASTE-TOKEN-HERE"
+    accessControlAllowMethods:
+      - "GET"
+      - "OPTIONS"
+      - "PUT"
+    accessControlAllowOriginList:
+      - "https://kubernetes"
+      - "https://swagger-ui"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swagger-ui
+  labels:
+    app: swagger-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swagger-ui
+  template:
+    metadata:
+      labels:
+        app: swagger-ui
+    spec:
+      containers:
+        - name: swagger-ui
+          image: swaggerapi/swagger-ui
+          ports:
+            - containerPort: 8080
+          env:
+            - name: URL
+              value: https://kubernetes/openapi/v2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: swagger-ui-service # a random name
+spec:
+  selector:  # to connect to Pod through label
+    app: swagger-ui
+  ports:
+    - port: 8080  # service port
+      protocol: TCP
+      targetPort: 8080  # container port
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: new-admin-sa
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: new-admin-crb
+subjects:
+  - kind: ServiceAccount
+    name: new-admin-sa
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
