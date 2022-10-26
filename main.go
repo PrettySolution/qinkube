@@ -22,5 +22,5 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Println(queues)
+	fmt.Println(queues.Items)
 }
