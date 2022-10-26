@@ -27,7 +27,7 @@ func main() {
 		panic(err.Error())
 	}
 	fmt.Printf("lenght of Queues is %d\n", len(queues.Items))
-	fmt.Printf("name of first queue is '%s'\n", queues.Items[0].Name)
+	//fmt.Printf("name of first queue is '%s'\n", queues.Items[0].Name)
 
 	informer := qinkubeinformerfactory.NewSharedInformerFactory(clientset, 20*time.Minute)
 	ch := make(chan struct{})
