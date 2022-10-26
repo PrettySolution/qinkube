@@ -23,7 +23,7 @@ func Resource(resource string) schema.GroupResource {
 	return SchemeGroupVersion.WithResource(resource).GroupResource()
 }
 
-// TODO: is init needed ???
+//do not need to call Register as NeSchemeBuilder does already !!!!
 //func init() {
 //	SchemeBuilder.Register(addKnownTypes)
 //}
