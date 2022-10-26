@@ -36,9 +36,9 @@ type FakeQueues struct {
 	ns   string
 }
 
-var queuesResource = schema.GroupVersionResource{Group: "qinkube.prettysoluton.github.com", Version: "v1alpha1", Resource: "queues"}
+var queuesResource = schema.GroupVersionResource{Group: "qinkube.prettysolution.github.com", Version: "v1alpha1", Resource: "queues"}
 
-var queuesKind = schema.GroupVersionKind{Group: "qinkube.prettysoluton.github.com", Version: "v1alpha1", Kind: "Queue"}
+var queuesKind = schema.GroupVersionKind{Group: "qinkube.prettysolution.github.com", Version: "v1alpha1", Kind: "Queue"}
 
 // Get takes name of the queue, and returns the corresponding queue object, and an error if there is any.
 func (c *FakeQueues) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.Queue, err error) {

@@ -31,7 +31,7 @@ type QinkubeV1alpha1Interface interface {
 	QueuesGetter
 }
 
-// QinkubeV1alpha1Client is used to interact with features provided by the qinkube.prettysoluton.github.com group.
+// QinkubeV1alpha1Client is used to interact with features provided by the qinkube.prettysolution.github.com group.
 type QinkubeV1alpha1Client struct {
 	restClient rest.Interface
 }

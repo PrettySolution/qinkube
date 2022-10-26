@@ -52,7 +52,7 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=qinkube.prettysoluton.github.com, Version=v1alpha1
+	// Group=qinkube.prettysolution.github.com, Version=v1alpha1
 	case v1alpha1.SchemeGroupVersion.WithResource("queues"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Qinkube().V1alpha1().Queues().Informer()}, nil
 
