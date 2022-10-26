@@ -23,6 +23,11 @@ func Resource(resource string) schema.GroupResource {
 	return SchemeGroupVersion.WithResource(resource).GroupResource()
 }
 
+// TODO: is init needed ???
+//func init() {
+//	SchemeBuilder.Register(addKnownTypes)
+//}
+
 // Adds the list of known types to Scheme.
 func addKnownTypes(scheme *runtime.Scheme) error {
 	scheme.AddKnownTypes(SchemeGroupVersion,
