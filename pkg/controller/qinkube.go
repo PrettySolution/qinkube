@@ -42,7 +42,7 @@ func (c *Controller) handleAdd(obj interface{}) {
 
 func (c *Controller) handleDel(obj interface{}) {
 	log.Println("handleDel was called")
-	c.wq.Add(obj)
+	c.wq.Forget(obj)
 }
 
 func (c *Controller) Run(ch chan struct{}) error {
@@ -63,5 +63,31 @@ func (c *Controller) worker() {
 }
 
 func (c *Controller) processNexItem() bool {
+	item, shutDown := c.wq.Get()
+	if shutDown {
+		return false
+	}
+
+	//Todo: forget item one has been processed.
+	defer c.wq.Forget(item)
+	key, err := cache.MetaNamespaceKeyFunc(item)
+	if err != nil {
+		log.Printf("error %s calling NamespaceKeyFunc on cache for item", err.Error())
+	}
+
+	ns, name, err := cache.SplitMetaNamespaceKey(key)
+	if err != nil {
+		log.Printf("error splitting key into namespace and name %s", err.Error())
+		return false
+	}
+
+	queue, err := c.qinkubeLister.Queues(ns).Get(name)
+	if err != nil {
+		log.Printf("error getting the Queue from lister %s", err.Error())
+		return false
+	}
+
+	log.Println(queue.Spec)
+
 	return true
 }
