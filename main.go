@@ -1,12 +1,26 @@
 package main
 
 import (
+	"context"
 	"fmt"
-
-	"github.com/prettysolution/qinkube/pkg/apis/qinkube/v1alpha1"
+	qinkubeversioned "github.com/prettysolution/qinkube/pkg/client/clientset/versioned"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/tools/clientcmd"
 )
 
 func main() {
-	k := v1alpha1.Kluster{}
-	fmt.Println(k)
+	rules := clientcmd.NewDefaultClientConfigLoadingRules()
+	kubeconfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(rules, &clientcmd.ConfigOverrides{})
+	config, err := kubeconfig.ClientConfig()
+	if err != nil {
+		fmt.Println("Could not load kubeconfig.ClientConfig()")
+		panic(err)
+	}
+	clientset := qinkubeversioned.NewForConfigOrDie(config)
+
+	queues, err := clientset.QinkubeV1alpha1().Queues("").List(context.Background(), metav1.ListOptions{})
+	if err != nil {
+		panic(err.Error())
+	}
+	fmt.Println(queues)
 }
