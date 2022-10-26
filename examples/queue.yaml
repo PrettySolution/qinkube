@@ -1,0 +1,6 @@
+apiVersion: qinkube.prettysolution.github.com/v1alpha1
+kind: Queue
+metadata:
+  name: queue-one
+spec:
+  name: test

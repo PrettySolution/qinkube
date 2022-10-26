@@ -22,5 +22,6 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Println(queues.Items)
+	fmt.Printf("lenght of Queues is %d\n", len(queues.Items))
+	fmt.Printf("name of first queue is '%s'\n", queues.Items[0].Name)
 }
