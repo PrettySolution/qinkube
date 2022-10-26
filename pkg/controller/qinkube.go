@@ -42,6 +42,7 @@ func (c *Controller) handleAdd(obj interface{}) {
 
 func (c *Controller) handleDel(obj interface{}) {
 	log.Println("handleDel was called")
+	//todo: you cant just forget item. need to to process that event properly
 	c.wq.Forget(obj)
 }
 
